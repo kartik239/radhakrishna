@@ -5,6 +5,7 @@ const form = document.querySelector('#registrationForm');
 const draftBadge = document.querySelector('#draftBadge');
 const successScreen = document.querySelector('#successScreen');
 const statusEl = document.querySelector('#formStatus');
+const progressBar = document.querySelector('#progressBar');
 const fields = [...form.elements].filter(el => el.name);
 let isSubmitted = false;
 let saveTimer;
@@ -12,6 +13,7 @@ let saveTimer;
 document.querySelector('#birthDate').max = new Date().toISOString().slice(0, 10);
 restoreDraft();
 updateCounters();
+updateProgress();
 fields.forEach(field => {
   field.addEventListener('input', handleChange);
   field.addEventListener('change', handleChange);
@@ -29,16 +31,17 @@ function handleChange(event) {
     event.target.value = event.target.value.replace(/\D/g, '').slice(0, 10);
   }
   updateCounters();
+  updateProgress();
   validateField(event.target, false);
   saveDraftSoon();
 }
 
 function saveDraftSoon() {
-  draftBadge.textContent = '💾 Saving...';
+  draftBadge.textContent = 'Saving';
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(readForm()));
-    draftBadge.textContent = '🟢 Draft Saved';
+    draftBadge.textContent = 'Saved';
   }, 180);
 }
 
@@ -60,7 +63,7 @@ function restoreDraft() {
     else if (field.type === 'checkbox') field.checked = Boolean(saved[field.name]);
     else field.value = saved[field.name];
   });
-  if (Object.keys(saved).length) draftBadge.textContent = '🟢 Draft Restored';
+  if (Object.keys(saved).length) draftBadge.textContent = 'Restored';
 }
 
 function hasDraft() {
@@ -72,6 +75,13 @@ function updateCounters() {
     const input = document.getElementById(counter.dataset.for);
     counter.textContent = `${input.value.length} characters`;
   });
+}
+
+function updateProgress() {
+  const data = readForm();
+  const keys = ['childName','address','mobile','parentName','parentMobile','schoolName','grade','birthDate','gender','character','consent'];
+  const complete = keys.filter(key => data[key] === true || String(data[key] || '').trim()).length;
+  progressBar.style.width = `${Math.round((complete / keys.length) * 100)}%`;
 }
 
 function validateField(field, show = true) {
@@ -137,6 +147,7 @@ async function submitForm(event) {
     localStorage.removeItem(STORAGE_KEY);
     form.reset();
     updateCounters();
+    updateProgress();
     isSubmitted = true;
     draftBadge.textContent = '✅ Submitted';
     successScreen.classList.add('show');

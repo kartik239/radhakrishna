@@ -18,14 +18,29 @@
     <div class="decor decor-two" aria-hidden="true"></div>
 
     <header class="hero comic-panel fade-in">
-      <div class="draft-badge" id="draftBadge" aria-live="polite">💾 Ready to Save</div>
-      <p class="eyebrow">Premium Event Registration</p>
+      <div class="hero-aura" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="eyebrow">जय श्री कृष्ण</p>
       <h1>राधा कृष्ण वेशभूषा स्पर्धा</h1>
-      <p class="speech-bubble">Fill the form carefully. Your progress is saved automatically on this device.</p>
+      <div class="hero-ribbon" aria-label="Registration journey">
+        <span>१. माहिती</span>
+        <span>२. वेशभूषा</span>
+        <span>३. घोषणा</span>
+      </div>
     </header>
 
     <section class="form-card comic-panel fade-in" aria-labelledby="formTitle">
-      <h2 id="formTitle">नोंदणी फॉर्म</h2>
+      <div class="form-topper">
+        <div>
+          <span class="chapter-tag">Chapter 01</span>
+          <h2 id="formTitle">नोंदणी फॉर्म</h2>
+        </div>
+        <div class="save-status" id="draftBadge" aria-live="polite">Auto-save ready</div>
+      </div>
+      <div class="progress-wrap" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
       <form id="registrationForm" novalidate>
         <div class="field text-field">
           <input id="childName" name="childName" type="text" autocomplete="name" required placeholder=" ">
