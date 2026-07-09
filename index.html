@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1255d9">
+  <meta name="description" content="राधा कृष्ण स्पर्धा नोंदणी फॉर्म">
+  <title>राधा कृष्ण स्पर्धा नोंदणी</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#registrationForm">Skip to registration form</a>
+  <main class="app-shell">
+    <div class="decor decor-one" aria-hidden="true"></div>
+    <div class="decor decor-two" aria-hidden="true"></div>
+
+    <header class="hero comic-panel fade-in">
+      <div class="hero-aura" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="hero-img-placeholder hero-img-left" aria-hidden="true">
+        <img src="logo-left.png" alt="Left Logo" onerror="this.style.display='none'">
+        <span class="hero-img-label">logo-left.png</span>
+      </div>
+      <span class="aayojak-label" aria-hidden="true">आयोजक</span>
+      <div class="hero-img-placeholder hero-img-right" aria-hidden="true">
+        <img src="logo-right.png" alt="Right Logo" onerror="this.style.display='none'">
+        <span class="hero-img-label">logo-right.png</span>
+      </div>
+      <p class="eyebrow"><span class="eyebrow-club">श्री राधाकृष्ण फ्रेंड्स क्लब, शिरवळ</span> <br> <span class="eyebrow-aayojit">आयोजित</span></p>
+      <h1>श्री राधाकृष्ण वेशभूषा स्पर्धा 2026</h1>
+    </header>
+
+    <section class="form-card comic-panel fade-in" aria-labelledby="formTitle">
+      <div class="form-topper">
+        <div>
+          <span class="chapter-tag">जय श्री कृष्ण</span>
+          <h2 id="formTitle">नोंदणी फॉर्म</h2>
+        </div>
+        <div class="save-status sr-only" id="draftBadge" aria-live="polite"></div>
+      </div>
+      <div class="progress-wrap" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <form id="registrationForm" novalidate>
+        <div class="field text-field">
+          <input id="childName" name="childName" type="text" autocomplete="name" required placeholder=" ">
+          <label for="childName">Child's Name / स्पर्धकाचे नाव *</label>
+          <small class="counter" data-for="childName">0 characters</small>
+          <p class="error" id="childNameError"></p>
+        </div>
+
+        <div class="field text-field wide">
+          <textarea id="address" name="address" rows="4" required placeholder=" "></textarea>
+          <label for="address">Address / स्पर्धकाचा पत्ता *</label>
+          <small class="counter" data-for="address">0 characters</small>
+          <p class="error" id="addressError"></p>
+        </div>
+
+        <div class="field text-field">
+          <input id="mobile" name="mobile" type="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" required placeholder=" ">
+          <label for="mobile">Mobile Number / मोबाईल नंबर *</label>
+          <p class="error" id="mobileError"></p>
+        </div>
+
+        <div class="field text-field">
+          <input id="parentName" name="parentName" type="text" required placeholder=" ">
+          <label for="parentName">Parent / Guardian Name (पालकाचे नाव) *</label>
+          <small class="counter" data-for="parentName">0 characters</small>
+          <p class="error" id="parentNameError"></p>
+        </div>
+
+        <div class="field text-field">
+          <input id="parentMobile" name="parentMobile" type="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" required placeholder=" ">
+          <label for="parentMobile">Whatsapp Mobile Number (व्हॉट्सॲप मोबाईल नंबर) *</label>
+          <p class="error" id="parentMobileError"></p>
+        </div>
+
+        <div class="field text-field">
+          <input id="schoolName" name="schoolName" type="text" required placeholder=" ">
+          <label for="schoolName">School Name / शाळेचे नाव *</label>
+          <small class="counter" data-for="schoolName">0 characters</small>
+          <p class="error" id="schoolNameError"></p>
+        </div>
+
+        <div class="field text-field">
+          <input id="grade" name="grade" type="number" min="0" required placeholder=" ">
+          <label for="grade">Grade / इयत्ता *</label>
+          <small class="hint">*स्पर्धक रांगणारे / बालवाडीत असल्यास शून्य (0) लिहावे.</small>
+          <p class="error" id="gradeError"></p>
+        </div>
+
+        <div class="field text-field">
+          <input id="birthDate" name="birthDate" type="date" required placeholder=" ">
+          <label for="birthDate">Child Birth Date / स्पर्धकाची जन्म तारीख *</label>
+          <p class="error" id="birthDateError"></p>
+        </div>
+
+        <fieldset class="field choice-field">
+          <legend>Gender / लिंग *</legend>
+          <label class="choice"><input type="radio" name="gender" value="मुलगा (Boy)" required> 👦 मुलगा (Boy)</label>
+          <label class="choice"><input type="radio" name="gender" value="मुलगी (Girl)" required> 👧 मुलगी (Girl)</label>
+          <p class="error" id="genderError"></p>
+        </fieldset>
+
+        <div class="field select-field">
+          <label for="character">Character Participating As / वेशभूषा *</label>
+          <select id="character" name="character" required>
+            <option value="">Select character</option>
+            <option value="श्री कृष्ण">🦚 श्री कृष्ण</option>
+            <option value="राधा">🌸 राधा</option>
+          </select>
+          <p class="error" id="characterError"></p>
+        </div>
+
+        <label class="declaration comic-panel-mini">
+          <input id="consent" name="consent" type="checkbox" required>
+          <span>मी दिलेली सर्व माहिती खरी व अचूक असल्याचे घोषित करतो/करते. *</span>
+        </label>
+        <p class="error" id="consentError"></p>
+
+        <button class="submit-btn" type="submit"><span class="btn-text">नोंदणी करा</span><span class="spinner" aria-hidden="true"></span></button>
+        <p class="form-note" id="formStatus" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="success-screen" id="successScreen" aria-live="assertive" aria-hidden="true">
+      <div class="success-card comic-panel">
+        <div class="success-emoji">🎉</div>
+        <h2>नोंदणी यशस्वीरित्या पूर्ण झाली!</h2>
+        <p>🙏 जय श्री कृष्ण 🙏</p>
+        <p>Thank you for participating.</p>
+        <a class="whatsapp-share-btn" id="whatsappShareBtn" href="#" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.5 8.5A10.44 10.44 0 0 0 16 5.5C10.2 5.5 5.5 10.2 5.5 16c0 1.85.48 3.65 1.4 5.24L5.5 26.5l5.4-1.42A10.44 10.44 0 0 0 16 26.5c5.8 0 10.5-4.7 10.5-10.5 0-2.8-1.09-5.43-3-7.5zm-7.5 16.16a8.67 8.67 0 0 1-4.42-1.21l-.32-.19-3.2.84.85-3.12-.2-.32A8.63 8.63 0 0 1 7.34 16c0-4.78 3.88-8.66 8.66-8.66 2.31 0 4.48.9 6.11 2.54A8.6 8.6 0 0 1 24.66 16c0 4.78-3.88 8.66-8.66 8.66zm4.75-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44h-.5c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14 0 1.26.92 2.48 1.05 2.65.13.17 1.81 2.77 4.39 3.88.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.54-.63 1.76-1.24.22-.61.22-1.13.15-1.24-.07-.11-.24-.17-.5-.3z" fill="#fff"/></svg>
+          📢 मित्रांना सांगा — WhatsApp वर शेअर करा!
+        </a>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
