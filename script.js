@@ -138,7 +138,9 @@ async function submitForm(event) {
   statusEl.textContent = 'Submitting...';
   try {
     if (!WEB_APP_URL.includes('PASTE_')) {
-      await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(payload));
+      await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: formData });
     } else {
       await new Promise(resolve => setTimeout(resolve, 700));
     }

@@ -3,7 +3,7 @@ const HEADERS = ['Timestamp','Registration ID','Child Name','Address','Mobile Nu
 
 function doPost(e) {
   const sheet = getSheet_();
-  const data = JSON.parse(e.postData.contents || '{}');
+  const data = JSON.parse(e.parameter.data || e.postData?.contents || '{}');
   sheet.appendRow([
     data.timestamp || new Date(),
     data.registrationId || '',
