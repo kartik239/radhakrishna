@@ -1,5 +1,5 @@
 const SHEET_NAME = 'Registrations';
-const HEADERS = ['Timestamp','Registration ID','Child Name','Address','Mobile Number','Parent Name','Parent Mobile Number','School Name','Grade','Birth Date','Gender','Character (राधा / श्री कृष्ण)','Browser','Consent'];
+const HEADERS = ['Timestamp','Registration ID','Child Name','Address','Mobile Number','Parent Name','WhatsApp Mobile Number','School Name','Grade','Birth Date','Gender','Character (राधा / श्री कृष्ण)','Browser','Consent'];
 
 function doPost(e) {
   const sheet = getSheet_();

@@ -154,6 +154,16 @@ async function submitForm(event) {
     successScreen.setAttribute('aria-hidden', 'false');
     setTimeout(() => successScreen.classList.remove('show'), 4200);
     statusEl.textContent = `Success! Registration ID: ${registrationId}`;
+    const childName = document.querySelector('#childName')?.value || '';
+    const waText = encodeURIComponent(`🎉 श्री राधाकृष्ण वेशभूषा स्पर्धा 2026 मध्ये ${childName} ची नोंदणी यशस्वी झाली!
+
+🆔 Registration ID: ${registrationId}
+
+🙏 श्री राधाकृष्ण फ्रेंड्स क्लब, शिरवळ
+
+तुम्हीही नोंदणी करा!`);
+    const waBtn = document.querySelector('#whatsappShareBtn');
+    if (waBtn) waBtn.href = `https://wa.me/?text=${waText}`;
   } catch (error) {
     statusEl.textContent = 'Submission failed. Please check your internet connection and try again.';
   } finally {
