@@ -93,6 +93,7 @@ function validateField(field, show = true) {
   if (field.required && !value && field.type !== 'radio' && field.type !== 'checkbox') message = 'This field is required.';
   if ((field.name === 'mobile' || field.name === 'parentMobile') && value && !/^\d{10}$/.test(value)) message = 'Please enter exactly 10 digits.';
   if (field.name === 'grade' && value !== '' && Number(value) < 0) message = 'Grade cannot be less than 0.';
+  if (field.name === 'grade' && value !== '' && Number(value) > 6) message = 'Maximum grade allowed is 6th.';
   if (field.name === 'birthDate' && value && value > new Date().toISOString().slice(0, 10)) message = 'Birth date cannot be in the future.';
   if (field.name === 'character' && !value) message = 'Please select a character.';
   if (field.type === 'checkbox' && !field.checked) message = 'Declaration is required.';
@@ -125,7 +126,7 @@ function scrollToFirstError() {
 function createRegistrationId() {
   const count = Number(localStorage.getItem('srk-registration-count') || '0') + 1;
   localStorage.setItem('srk-registration-count', String(count));
-  return `SRK2025-${String(count).padStart(4, '0')}`;
+  return `SRK2026-${String(count).padStart(4, '0')}`;
 }
 
 async function submitForm(event) {
