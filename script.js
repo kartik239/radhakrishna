@@ -1,4 +1,4 @@
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxKctFhZXnFWgy3X1t4yNoSZe2q7g-7YvzLgQKOH_OSFNeU9Nv9zTxEg1Hv41kwmKzuhw/exec';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwEqCWUwCjBR290mgx7kxoM5XB8DHuNvJzzA94WAv2tEnAg6l3H1uadZAroeFMdKiLP/exec';
 const STORAGE_KEY = 'srk-registration-draft-v1';
 const submittedIds = new Set(JSON.parse(localStorage.getItem('srk-submitted-ids') || '[]'));
 const form = document.querySelector('#registrationForm');
