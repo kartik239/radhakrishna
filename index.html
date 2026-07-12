@@ -4,8 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1255d9">
-  <meta name="description" content="राधा कृष्ण स्पर्धा नोंदणी फॉर्म">
-  <title>राधा कृष्ण स्पर्धा नोंदणी</title>
+  <meta name="description" content="श्री राधाकृष्ण वेशभूषा स्पर्धा 2026 — शनिवार, 5 सप्टेंबर 2026, सायंकाळी 6:00 वाजता, कबुले हॉल, शिरवळ. प्रवेश निःशुल्क!">
+  <title>श्री राधाकृष्ण वेशभूषा स्पर्धा 2026</title>
+
+  <!-- Open Graph (WhatsApp, Facebook) -->
+  <meta property="og:title" content="श्री राधाकृष्ण वेशभूषा स्पर्धा 2026">
+  <meta property="og:description" content="शनिवार, 5 सप्टेंबर 2026 | सायंकाळी 6:00 | कबुले हॉल, शिरवळ | प्रवेश निःशुल्क! 🎉">
+  <meta property="og:image" content="socialpreview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="mr_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="श्री राधाकृष्ण वेशभूषा स्पर्धा 2026">
+  <meta name="twitter:description" content="शनिवार, 5 सप्टेंबर 2026 | सायंकाळी 6:00 | कबुले हॉल, शिरवळ | प्रवेश निःशुल्क! 🎉">
+  <meta name="twitter:image" content="socialpreview.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -32,6 +47,7 @@
       </div>
       <p class="eyebrow"><span class="eyebrow-club">श्री राधाकृष्ण फ्रेंड्स क्लब, शिरवळ</span> <br> <span class="eyebrow-aayojit">आयोजित</span></p>
       <h1>श्री राधाकृष्ण वेशभूषा स्पर्धा 2026</h1>
+      <p class="event-details">📅 शनिवार, 5 सप्टेंबर 2026 &nbsp;|&nbsp; 🕕 सायंकाळी 6:00 वाजता<br>📍 कबुले हॉल, केदारेश्वर मंदिर जवळ, शिरवळ</p>
     </header>
 
     <section class="form-card comic-panel fade-in" aria-labelledby="formTitle">
@@ -121,6 +137,7 @@
           <span>मी दिलेली सर्व माहिती खरी व अचूक असल्याचे घोषित करतो/करते. *</span>
         </label>
         <p class="error" id="consentError"></p>
+        <p class="free-entry-note">🎉 प्रवेश संपूर्णपणे निःशुल्क आहे — कोणतेही शुल्क नाही!</p>
 
         <button class="submit-btn" type="submit"><span class="btn-text">नोंदणी करा</span><span class="spinner" aria-hidden="true"></span></button>
         <p class="form-note" id="formStatus" aria-live="polite"></p>
@@ -143,3 +160,22 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!-- Chatbot Widget -->
+<div class="chatbot-fab" id="chatbotFab" onclick="toggleChat()" title="मदत हवी आहे?">
+  🙏
+  <span class="chatbot-fab-label">मदत</span>
+</div>
+
+<div class="chatbot-window comic-panel" id="chatbotWindow" aria-hidden="true">
+  <div class="chatbot-header">
+    <span>🪈 राधाकृष्ण सहाय्यक</span>
+    <button class="chatbot-close" onclick="toggleChat()" aria-label="बंद करा">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages">
+    <div class="chat-msg bot">नमस्कार! 🙏 श्री राधाकृष्ण वेशभूषा स्पर्धा 2026 बद्दल काही प्रश्न आहे का?</div>
+  </div>
+  <div class="chatbot-input-row">
+    <input type="text" id="chatbotInput" placeholder="प्रश्न विचारा..." onkeydown="if(event.key==='Enter') sendChat()" />
+    <button onclick="sendChat()" class="chatbot-send">➤</button>
+  </div>
+</div>
