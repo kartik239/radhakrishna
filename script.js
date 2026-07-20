@@ -299,3 +299,36 @@ function appendMsg(text, type) {
   msgs.scrollTop = msgs.scrollHeight;
   return div;
 }
+
+// ── Music Player ──
+let musicPlaying = false;
+const bgMusic = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('musicIcon');
+
+function toggleMusic() {
+  if (musicPlaying) {
+    bgMusic.pause();
+    musicIcon.textContent = '🔇';
+    musicPlaying = false;
+  } else {
+    bgMusic.play().then(() => {
+      musicIcon.textContent = '🎵';
+      musicPlaying = true;
+    }).catch(() => {
+      musicIcon.textContent = '🎵';
+      musicPlaying = true;
+    });
+  }
+}
+
+// Auto-play on first user interaction
+document.addEventListener('click', function startMusic() {
+  if (!musicPlaying && bgMusic.src) {
+    bgMusic.volume = 0.35;
+    bgMusic.play().then(() => {
+      musicIcon.textContent = '🎵';
+      musicPlaying = true;
+    }).catch(() => {});
+  }
+  document.removeEventListener('click', startMusic);
+}, { once: true });

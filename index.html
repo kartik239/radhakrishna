@@ -47,7 +47,7 @@
       </div>
       <p class="eyebrow"><span class="eyebrow-club">श्री राधाकृष्ण फ्रेंड्स क्लब, शिरवळ</span> <br> <span class="eyebrow-aayojit">आयोजित</span></p>
       <h1>श्री राधाकृष्ण वेशभूषा स्पर्धा 2026</h1>
-      <p class="event-details">📅 शनिवार, 5 सप्टेंबर 2026 &nbsp;|&nbsp; 🕕 सायंकाळी 6:00 वाजता<br>📍 कबुले हॉल, केदारेश्वर मंदिर जवळ, शिरवळ</p>
+      <div class="event-details"><span>📅 शनिवार, 5 सप्टेंबर 2026</span><span>🕕 सायंकाळी 6:00 वाजता</span><span>📍 कबुले हॉल, केदारेश्वर मंदिर जवळ, शिरवळ</span></div>
     </header>
 
     <section class="form-card comic-panel fade-in" aria-labelledby="formTitle">
@@ -160,6 +160,15 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!-- Music Player -->
+<div class="music-player" id="musicPlayer">
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Toggle music">
+    <span id="musicIcon">🔇</span>
+  </button>
+  <span class="music-label" id="musicLabel">🎵 जय श्री कृष्ण</span>
+</div>
+<audio id="bgMusic" loop src="background.mp3"></audio>
+
 <!-- Chatbot Widget -->
 <div class="chatbot-fab" id="chatbotFab" onclick="toggleChat()" title="मदत हवी आहे?">
   🙏
