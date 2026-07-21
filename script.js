@@ -186,7 +186,7 @@ const SYSTEM_PROMPT = `You are "राधाकृष्ण सहाय्य�
 
 ━━━ EVENT DETAILS ━━━
 - Date: शनिवार, 5 सप्टेंबर 2026 (Saturday, 5th September 2026)
-- Time: सायंकाळी 6:00 वाजता (6:00 PM onwards)
+- Time: सायंकाळी 5:30 वाजता (6:00 PM onwards)
 - Venue: कबुले हॉल, केदारेश्वर मंदिर जवळ, शिरवळ
 - Entry for audience: Free and open to all
 - Registration fee for participants: absolutely FREE — कोणतेही शुल्क नाही
@@ -326,15 +326,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // Auto-play softly on first interaction anywhere on page
-  document.addEventListener('click', function startMusic(e) {
-    if (e.target === musicBtn || musicBtn.contains(e.target)) return;
-    if (!musicPlaying) {
-      bgMusic.play().then(() => {
-        musicIcon.textContent = '🎵';
-        musicPlaying = true;
-      }).catch(() => {});
-    }
-    document.removeEventListener('click', startMusic);
+  // Try auto-play immediately
+  bgMusic.play().then(() => {
+    musicIcon.textContent = '🎵';
+    musicPlaying = true;
+  }).catch(() => {
+    // Browser blocked autoplay — play on first interaction instead
+    document.addEventListener('click', function startMusic(e) {
+      if (e.target === musicBtn || musicBtn.contains(e.target)) return;
+      if (!musicPlaying) {
+        bgMusic.play().then(() => {
+          musicIcon.textContent = '🎵';
+          musicPlaying = true;
+        }).catch(() => {});
+      }
+      document.removeEventListener('click', startMusic);
+    });
   });
 });
