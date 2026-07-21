@@ -301,34 +301,40 @@ function appendMsg(text, type) {
 }
 
 // ── Music Player ──
-let musicPlaying = false;
-const bgMusic = document.getElementById('bgMusic');
-const musicIcon = document.getElementById('musicIcon');
+document.addEventListener('DOMContentLoaded', function () {
+  const bgMusic = document.getElementById('bgMusic');
+  const musicIcon = document.getElementById('musicIcon');
+  const musicBtn = document.getElementById('musicBtn');
+  let musicPlaying = false;
 
-function toggleMusic() {
-  if (musicPlaying) {
-    bgMusic.pause();
-    musicIcon.textContent = '🔇';
-    musicPlaying = false;
-  } else {
-    bgMusic.play().then(() => {
-      musicIcon.textContent = '🎵';
-      musicPlaying = true;
-    }).catch(() => {
-      musicIcon.textContent = '🎵';
-      musicPlaying = true;
-    });
-  }
-}
+  if (!bgMusic || !musicIcon || !musicBtn) return;
 
-// Auto-play on first user interaction
-document.addEventListener('click', function startMusic() {
-  if (!musicPlaying && bgMusic.src) {
-    bgMusic.volume = 0.35;
-    bgMusic.play().then(() => {
-      musicIcon.textContent = '🎵';
-      musicPlaying = true;
-    }).catch(() => {});
-  }
-  document.removeEventListener('click', startMusic);
-}, { once: true });
+  bgMusic.volume = 0.35;
+
+  window.toggleMusic = function () {
+    if (musicPlaying) {
+      bgMusic.pause();
+      musicIcon.textContent = '🔇';
+      musicPlaying = false;
+    } else {
+      bgMusic.play().then(() => {
+        musicIcon.textContent = '🎵';
+        musicPlaying = true;
+      }).catch(() => {
+        musicIcon.textContent = '❌';
+      });
+    }
+  };
+
+  // Auto-play softly on first interaction anywhere on page
+  document.addEventListener('click', function startMusic(e) {
+    if (e.target === musicBtn || musicBtn.contains(e.target)) return;
+    if (!musicPlaying) {
+      bgMusic.play().then(() => {
+        musicIcon.textContent = '🎵';
+        musicPlaying = true;
+      }).catch(() => {});
+    }
+    document.removeEventListener('click', startMusic);
+  });
+});
