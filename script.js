@@ -298,11 +298,18 @@ async function sendChat() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        model: 'meta-llama/llama-4-scout-17b-16e-instruct',
         max_tokens: 1000,
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
       })
     });
+    if (!res.ok) {
+      const err = await res.json();
+      console.error('Groq error:', err);
+      typing.remove();
+      appendMsg('माफ करा, सध्या उत्तर देता येत नाही. (' + (err.error?.message || res.status) + ')', 'bot');
+      return;
+    }
     const data = await res.json();
     const reply = data.choices?.[0]?.message?.content || 'माफ करा, काहीतरी चूक झाली.';
     typing.remove();
