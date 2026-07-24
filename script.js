@@ -298,7 +298,7 @@ async function sendChat() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
       body: JSON.stringify({
-        model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+        model: 'llama-3.3-70b-versatile',
         max_tokens: 1000,
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
       })
