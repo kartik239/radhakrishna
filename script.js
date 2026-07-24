@@ -296,7 +296,7 @@ async function sendChat() {
   try {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
         max_tokens: 1000,
