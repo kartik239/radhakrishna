@@ -294,24 +294,19 @@ async function sendChat() {
   const typing = appendMsg('टाइप करत आहे...', 'typing');
 
   try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        max_tokens: 1000,
-        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
-      })
-    });
-    if (!res.ok) {
-      const err = await res.json();
-      console.error('Groq error:', err);
+    const formData = new FormData();
+    formData.append('data', JSON.stringify({
+      type: 'chat',
+      messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
+    }));
+    const res = await fetch(WEB_APP_URL, { method: 'POST', body: formData });
+    const data = await res.json();
+    if (!data.ok || !data.reply) {
       typing.remove();
-      appendMsg('माफ करा, सध्या उत्तर देता येत नाही. (' + (err.error?.message || res.status) + ')', 'bot');
+      appendMsg('माफ करा, सध्या उत्तर देता येत नाही. कृपया 9860844503 वर WhatsApp करा.', 'bot');
       return;
     }
-    const data = await res.json();
-    const reply = data.choices?.[0]?.message?.content || 'माफ करा, काहीतरी चूक झाली.';
+    const reply = data.reply;
     typing.remove();
     appendMsg(reply, 'bot');
     chatHistory.push({ role: 'assistant', content: reply });
