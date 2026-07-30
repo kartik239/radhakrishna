@@ -1,4 +1,4 @@
-const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzDeqcHW5y2W0l9zzW2eFaDo_EY4KZITw4rV-EOfpXR14h_a3LKsBPeQBmymH6YwLWNrQ/exec';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyTB5QojXTwBU0CYLB5cOsyBYC-r5dJZwDMeprR8uPnN60Cp5dbf-ELKr1OwZBG9pq_7w/exec';
 const STORAGE_KEY = 'srk-registration-draft-v1';
 const submittedIds = new Set(JSON.parse(localStorage.getItem('srk-submitted-ids') || '[]'));
 const form = document.querySelector('#registrationForm');
@@ -301,10 +301,9 @@ async function sendChat() {
     }));
     const res = await fetch(WEB_APP_URL, { method: 'POST', body: formData });
     const data = await res.json();
-    console.log('Server response:', JSON.stringify(data));
     if (!data.ok || !data.reply) {
       typing.remove();
-      appendMsg('Debug: ' + JSON.stringify(data), 'bot');
+      appendMsg('माफ करा, सध्या उत्तर देता येत नाही. कृपया 9860844503 वर WhatsApp करा.', 'bot');
       return;
     }
     const reply = data.reply;

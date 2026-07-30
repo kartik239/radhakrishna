@@ -87,3 +87,11 @@ function getSheet_() {
   if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
   return sheet;
 }
+
+function testFetch() {
+  const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/models', {
+    headers: { 'Authorization': 'Bearer ' + GROQ_API_KEY },
+    muteHttpExceptions: true
+  });
+  Logger.log(res.getContentText());
+}
