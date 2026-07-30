@@ -1,20 +1,26 @@
 const SHEET_NAME = 'Registrations';
 const HEADERS = ['Timestamp','Registration ID','Child Name','Address','Mobile Number','Parent Name','WhatsApp Mobile Number','School Name','Grade','Birth Date','Gender','Character (राधा / श्री कृष्ण)','Browser','Consent'];
-const GROQ_API_KEY = 'PASTE_YOUR_GROQ_KEY_HERE'; // ← paste key only here, never in script.js
+const GROQ_API_KEY = 'PASTE_YOUR_GROQ_KEY_HERE'; // ← only edit this line
 
 function doGet(e) {
   return ContentService
-    .createTextOutput(JSON.stringify({ ok: true }))
+    .createTextOutput(JSON.stringify({ ok: true, message: 'Server running' }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
 function doPost(e) {
   try {
-    const data = JSON.parse(e.parameter.data || e.postData?.contents || '{}');
+    // Parse from FormData (e.parameter.data) or raw JSON body
+    let data = {};
+    if (e.parameter && e.parameter.data) {
+      data = JSON.parse(e.parameter.data);
+    } else if (e.postData && e.postData.contents) {
+      data = JSON.parse(e.postData.contents);
+    }
 
     // ── Chatbot request ──
     if (data.type === 'chat') {
-      const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const groqRes = UrlFetchApp.fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -27,9 +33,12 @@ function doPost(e) {
         }),
         muteHttpExceptions: true
       });
-      const result = JSON.parse(res.getContentText());
+      const groqData = JSON.parse(groqRes.getContentText());
+      const reply = groqData.choices && groqData.choices[0]
+        ? groqData.choices[0].message.content
+        : JSON.stringify(groqData); // send raw response for debugging if something goes wrong
       return ContentService
-        .createTextOutput(JSON.stringify({ ok: true, reply: result.choices?.[0]?.message?.content || '' }))
+        .createTextOutput(JSON.stringify({ ok: true, reply: reply }))
         .setMimeType(ContentService.MimeType.JSON);
     }
 
@@ -47,7 +56,7 @@ function doPost(e) {
         data.character || '', data.browser || '', data.consent || ''
       ]);
       return ContentService
-        .createTextOutput(JSON.stringify({ ok: true, registrationId }))
+        .createTextOutput(JSON.stringify({ ok: true, registrationId: registrationId }))
         .setMimeType(ContentService.MimeType.JSON);
     } finally {
       lock.releaseLock();
@@ -65,7 +74,7 @@ function generateRegistrationId_(sheet) {
   if (lastRow <= 1) return 'SRK2026-0001';
   const regIds = sheet.getRange(2, 2, lastRow - 1, 1).getValues().flat();
   let maxNum = 0;
-  regIds.forEach(id => {
+  regIds.forEach(function(id) {
     const match = String(id).match(/SRK2026-(\d+)/);
     if (match) { const n = parseInt(match[1], 10); if (n > maxNum) maxNum = n; }
   });
