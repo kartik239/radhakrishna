@@ -301,9 +301,10 @@ async function sendChat() {
     }));
     const res = await fetch(WEB_APP_URL, { method: 'POST', body: formData });
     const data = await res.json();
+    console.log('Server response:', JSON.stringify(data));
     if (!data.ok || !data.reply) {
       typing.remove();
-      appendMsg('माफ करा, सध्या उत्तर देता येत नाही. कृपया 9860844503 वर WhatsApp करा.', 'bot');
+      appendMsg('Debug: ' + JSON.stringify(data), 'bot');
       return;
     }
     const reply = data.reply;
