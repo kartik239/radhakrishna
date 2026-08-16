@@ -180,13 +180,13 @@ const SYSTEM_PROMPT = `You are "राधाकृष्ण सहाय्य�
 - Organized by: श्री राधाकृष्ण फ्रेंड्स क्लब, शिरवळ
 - Running since: सन २००७ (2007) — this is the 16th consecutive year
 - President / अध्यक्ष: श्री. संदिप तुकाराम गायकवाड
-- Also holds position: मा. अध्यक्ष, तंटामुक्ती समिती ,शिरवळ (बिनविरोध सलग १५ वर्ष),  कर व आर्थिक सल्लागार म्हणून कार्यरत 
+- Also holds position: मा. अध्यक्ष, तंटामुक्ती समिती, शिरवळ (बिनविरोध सलग १५ वर्ष), कर व आर्थिक सल्लागार म्हणून कार्यरत
 - WhatsApp contact: 9860844503
 - WhatsApp Group: https://chat.whatsapp.com/G3uIplGaHjxGfAu2yvmMzv
 - Purpose: To give children an opportunity to showcase hidden talents, build confidence, and connect with the devotional tradition of Radha-Krishna
 - Every year 200+ children participate enthusiastically
 - The entire area fills with a devotional and joyful atmosphere every year
--श्री. संदिप गायकवाड मित्रपरिवार ; 
+
 ━━━ EVENT DETAILS ━━━
 - Date: शनिवार, ०५ सप्टेंबर २०२६ (Saturday, 5th September 2026)
 - Time: सायंकाळी ५.३० वाजता (5:30 PM onwards)

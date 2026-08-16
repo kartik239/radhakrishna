@@ -384,3 +384,30 @@ body{background-size:120% 120%,140% 140%,auto,auto,180% 180%;animation:ambientMe
   transform: translateY(2px);
   box-shadow: 0 2px 0 #128C4F;
 }
+
+/* ── Acknowledgement Section ── */
+.acknowledgement {
+  margin: 28px auto 20px;
+  max-width: 680px;
+  padding: 18px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255,214,90,0.15), rgba(18,85,217,0.08));
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 var(--gold);
+  overflow: hidden;
+}
+.ack-title {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--deep);
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+.ack-marquee {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 2;
+  padding: 6px 0;
+}
