@@ -42,6 +42,33 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    // ── Duplicate Check request ──
+    if (data.type === 'checkDuplicate') {
+      const sheet = getSheet_();
+      const lastRow = sheet.getLastRow();
+      if (lastRow <= 1) {
+        return ContentService
+          .createTextOutput(JSON.stringify({ ok: true, duplicate: false }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+      // Column 3 = Child Name, Column 5 = Mobile Number
+      const names   = sheet.getRange(2, 3, lastRow - 1, 1).getValues().flat().map(v => String(v).trim().toLowerCase());
+      const mobiles = sheet.getRange(2, 5, lastRow - 1, 1).getValues().flat().map(v => String(v).trim());
+      const regIds  = sheet.getRange(2, 2, lastRow - 1, 1).getValues().flat();
+      const incomingName   = String(data.childName || '').trim().toLowerCase();
+      const incomingMobile = String(data.mobile    || '').trim();
+      for (let i = 0; i < names.length; i++) {
+        if (names[i] === incomingName && mobiles[i] === incomingMobile) {
+          return ContentService
+            .createTextOutput(JSON.stringify({ ok: true, duplicate: true, registrationId: regIds[i] }))
+            .setMimeType(ContentService.MimeType.JSON);
+        }
+      }
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: true, duplicate: false }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
     // ── Registration request ──
     const lock = LockService.getScriptLock();
     lock.waitLock(10000);

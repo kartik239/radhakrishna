@@ -129,6 +129,25 @@ async function submitForm(event) {
   const payload = { ...readForm(), browser: navigator.userAgent, consent: document.querySelector('#consent').checked ? 'Yes' : 'No' };
   form.classList.add('loading');
   statusEl.textContent = 'Submitting...';
+
+  // ── Duplicate check ──
+  try {
+    const dupData = new FormData();
+    dupData.append('data', JSON.stringify({ type: 'checkDuplicate', childName: payload.childName, mobile: payload.mobile }));
+    const dupRes  = await fetch(WEB_APP_URL, { method: 'POST', body: dupData });
+    const dupJson = await dupRes.json();
+    if (dupJson.ok && dupJson.duplicate) {
+      form.classList.remove('loading');
+      const existingId = dupJson.registrationId || '';
+      const greetName  = payload.childName ? payload.childName.trim() : 'you';
+      statusEl.textContent = '';
+      // Show a friendly already-registered banner
+      showAlreadyRegistered(greetName, existingId);
+      return;
+    }
+  } catch (_) {
+    // Network hiccup — let submission continue; server will still prevent true duplicates
+  }
   let registrationId = '';
   try {
     const formData = new FormData();
@@ -324,6 +343,33 @@ function appendMsg(text, type) {
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
   return div;
+}
+
+// ── Already Registered Banner ──
+function showAlreadyRegistered(childName, registrationId) {
+  // Remove any existing banner first
+  const old = document.getElementById('alreadyRegisteredBanner');
+  if (old) old.remove();
+
+  const banner = document.createElement('div');
+  banner.id = 'alreadyRegisteredBanner';
+  banner.setAttribute('role', 'alert');
+  banner.setAttribute('aria-live', 'assertive');
+  banner.innerHTML = `
+    <div class="already-reg-icon">🎉</div>
+    <h3 class="already-reg-title">नमस्ते, <span class="already-reg-name">${childName}</span>!</h3>
+    <p class="already-reg-msg">
+      तुमची नोंदणी आधीच झाली आहे!<br>
+      <strong>Oops! "${childName}" is already registered.</strong>
+    </p>
+    ${registrationId ? `<p class="already-reg-id">🆔 Registration ID: <strong>${registrationId}</strong></p>` : ''}
+    <p class="already-reg-hint">कृपया तुमचा Registration ID जपून ठेवा — कार्यक्रमाच्या दिवशी आवश्यक असेल.<br><small>Please keep your Registration ID safe for the event day.</small></p>
+    <button class="already-reg-close" onclick="document.getElementById('alreadyRegisteredBanner').remove()">✕ Close</button>
+  `;
+
+  // Insert before the form
+  form.parentNode.insertBefore(banner, form);
+  banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 // ── Music Player ──
